@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>FaceBluff</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/find_friends.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="title">
+            <h1>
+                FaceBluff
+            </h1>
+        </div>
+        <div class="nav">
+            <div>
+                <a href="/profile" class="nav">Perfil</a>
+                <a href="/friends" class="nav">Amigos</a>
+                <a href="/questions" class="nav">Preguntas</a>
+                <a href="/logout" class="nav">Desconectar</a>
+            </div>
+            <div class="user_points">
+                <%if (imgProfile === ""){ %>
+                    <img id="small_image" src="/../img/default.png" height="30" width="30">
+                    <% } else { %>
+                        <img id="small_image" src="/imgProfile/<%= imgProfile%>" height="30" width="30">
+                        <% } %>
+                            <p>
+                                <%= points%> pts</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <h2>
+            <p>Resultados de búsqueda: '
+                <%= findName %>'</p>
+        </h2>
+        <div class="friends">
+            <% if(friends.length > 0){ %>
+                <ul>
+                    <% for(let i = 0; i < friends.length; i++) { %>
+                        <li>
+                            <div class="unknown_friends">
+                                <div class="img_and_name">
+                                    <% if (friends[i].imgProfile === '') { %>
+                                        <img id="small_image" src="/../img/default.png" height="35" width="35">
+                                        <% } else { %>
+                                            <img id="small_image" src="/imgProfile/<%= friends[i].imgProfile%>" height="35" width="35">
+                                            <% } %>
+                                                <p>
+                                                    <%= friends[i].name %>
+                                                </p>
+                                </div>
+                                <div class="request_button">
+                                    <a href="/requestFriend/<%=friends[i].id_user%>" class="button_style">Solicitar amistad</a>
+                                </div>
+                            </div>
+                        </li>
+                        <% } %>
+                </ul>
+                <% } else { %>
+                    <p>No se ha encontrado ningún amigo...</p>
+                    <% } %>
+
+        </div>
+    </div>
+</body>
+
+</html>

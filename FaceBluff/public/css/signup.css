@@ -1,0 +1,96 @@
+@font-face {
+    font-family: "MisoRegular";
+    src: url("../resources/MisoRegular.otf");
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-image: url(../img/background.jpg);
+}
+
+div.header {
+    background-color: #EBACBC !important;
+}
+
+h1 {
+    color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
+    letter-spacing: 10px;
+    font: 80px 'MisoRegular';
+}
+
+div.nav {
+    padding-left: 10%;
+    font: 30px 'MisoRegular';
+    display: flex;
+}
+
+a.nav {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+a.nav:hover {
+    background-color: #E59DA9;
+}
+
+a.nav + a.nav {
+    margin-left: 10px;
+}
+
+div.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.main {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font: 20px 'MisoRegular';
+}
+
+form {
+    background-color: #DD808F;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+div.data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 5px;
+}
+
+div.button_submit {
+    padding-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button_style {
+    padding: 10px;
+    font: 20px 'MisoRegular';
+    letter-spacing: 2px;
+    background-color: rgb(247, 37, 86);
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 100px;
+    border: 1px solid #F36C8C;
+    cursor: pointer;
+}
+
+div.error {
+    color: red;
+}

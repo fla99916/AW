@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>FaceBluff</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/new_question.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="title">
+            <h1>
+                FaceBluff
+            </h1>
+        </div>
+        <div class="nav">
+            <div>
+                <a href="/profile" class="nav">Perfil</a>
+                <a href="/friends" class="nav">Amigos</a>
+                <a href="/questions" class="nav">Preguntas</a>
+                <a href="/logout" class="nav">Desconectar</a>
+            </div>
+            <div class="user_points">
+                <%if (imgProfile === ""){ %>
+                <img id="small_image" src="/../img/default.png" height="30" width="30">
+                <% } else { %>
+                <img id="small_image" src="/imgProfile/<%= imgProfile%>" height="30" width="30">
+                <% } %>
+                <p>
+                    <%= points%>pts</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <h2>
+            Nueva pregunta
+        </h2>
+        <form method="POST" action="newQuestion">
+            <div class="data">
+                <p>Introduzca la pregunta</p>
+                <input type="text" name="text">
+            </div>
+            <div class="data">
+                <p>Respuesta a</p>
+                <input type="text" name="answer1">
+            </div>
+            <div class="data">
+                <p>Respuesta b</p>
+                <input type="text" name="answer2">
+            </div>
+            <div class="data">
+                <p>Respuesta c</p>
+                <input type="text" name="answer3">
+            </div>
+            <div class="data">
+                <p>Respuesta d</p>
+                <div class="data_text">
+                    <input type="text" name="answer4">
+                </div>
+            </div>
+            <div class="button_submit">
+                <input class="button_style" type="submit" value="Crear nueva pregunta">
+            </div>
+        </form>
+        <% if (error) { %>
+            <div class="error">
+                <p>Hay campos vacios</p>
+            </div>
+        <% } %> 
+    </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>FaceBluff</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/modify_perfil.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="title">
+            <h1>
+                FaceBluff
+            </h1>
+        </div>
+        <div class="nav">
+            <div>
+                <a href="/profile" class="nav">Perfil</a>
+                <a href="/friends" class="nav">Amigos</a>
+                <a href="/questions" class="nav">Preguntas</a>
+                <a href="/logout" class="nav">Desconectar</a>
+            </div>
+            <div class="user_points">
+                <%if (imgProfile === ""){ %>
+                    <img id="small_image" src="/../img/default.png" height="30" width="30">
+                    <% } else { %>
+                        <img id="small_image" src="/imgProfile/<%= imgProfile%>" height="30" width="30">
+                        <% } %>
+                            <p>
+                                <%= points%>pts</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <h2>
+            Modificar Usuario
+        </h2>
+        <form method="POST" action="modifyValidator" enctype="multipart/form-data">
+            <div class="data">
+                <p>Email</p>
+                <input type="text" name="email" value=<%=email%>>
+            </div>
+            <div class="data_two_lines">
+                <div class="data">
+                    <p>Contraseña</p>
+                    <input type="password" name="password" id="passwordInput" value=<%=password%>>
+                </div>
+                <div class="mostrar_contraseña">
+                    <input type="checkbox" onclick="mostrarContraseña()">Mostrar contraseña
+                </div>
+                <script>
+                    function mostrarContraseña() {
+                        var x = document.getElementById("passwordInput");
+                        if (x.type === "password") {
+                            x.type = "text";
+                        } else {
+                            x.type = "password";
+                        }
+                    }
+                </script>
+            </div>
+            <div class="data">
+                <p>Nombre completo</p>
+                <input type="text" name="name" value=<%=name%>>
+            </div>
+            <div class="data">
+                <p>Sexo</p>
+
+                <input type="radio" name="gender" value="M" id="masculino">
+                <p>Masculino</p>
+                <input type="radio" name="gender" value="F" id="femenino">
+                <p>Femenino</p>
+                <input type="radio" name="gender" value="O" id="otro">
+                <p>Otro</p>
+
+                <script>
+                    if ("<%= gender %>" === "M")
+                        document.getElementById("masculino").checked = true;
+                    else if ("<%= gender %>" === "F")
+                        document.getElementById("femenino").checked = true;
+                    else
+                        document.getElementById("otro").checked = true;
+                </script>
+            </div>
+            <div class="data">
+                <p>Fecha de nacimiento</p>
+                <% let bdate = birthdate.slice(0,10)%>
+                    <input type="date" name="birthdate" value="<%=bdate%>">
+            </div>
+            <div class="data_two_lines">
+                <div class="data">
+                    <p>Imagen de perfil</p>
+                    <input type="file" name="imgProfile">
+                </div>
+                <div>
+                    <p>Si no eliges ningún archivo, se mantendrá la imagen</p>
+                </div>
+            </div>
+            <div class="button_submit">
+                <input class="button_style" type="submit" value="Modificar">
+            </div>
+        </form>
+        <% if (errors.length > 0) { %>
+            <div class="error">
+                <p>La información introducida en el formulario es incorrecta:</p>
+                <ul>
+                    <% errors.forEach(function(error) { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }); %>
+                </ul>
+            </div>
+            <% } %>
+    </div>
+</body>
+
+</html>

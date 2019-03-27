@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>FaceBluff</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/questions.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="title">
+            <h1>
+                FaceBluff
+            </h1>
+        </div>
+        <div class="nav">
+            <div>
+                <a href="/profile" class="nav">Perfil</a>
+                <a href="/friends" class="nav">Amigos</a>
+                <a href="/questions" class="nav">Preguntas</a>
+                <a href="/logout" class="nav">Desconectar</a>
+            </div>
+            <div class="user_points">
+                <%if (imgProfile === ""){ %>
+                    <img id="small_image" src="/../img/default.png" height="40" width="40">
+                    <% } else { %>
+                        <img id="small_image" src="/imgProfile/<%= imgProfile%>" height="40" width="40">
+                        <% } %>
+                            <p>
+                                <%= points%>pts</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <h2>
+            Preguntas seleccionadas aleatoriamente
+        </h2>
+        <div class="questions">
+            <%  if (questionList.length === 0) { %>
+                <h3>
+                    No hay preguntas creadas
+                </h3>
+                <% } else if (questionList.length < 5) { %>
+                    <ul>
+                        <% for (let i = 0; i < questionList.length; i++) { %>
+                            <li>
+                                <a href="/question/<%= questionList[i].idQuestion %>" class="question">
+                                    <%= questionList[i].textQuestion %>
+                                </a>
+                            </li>
+                            <% } %>
+                    </ul>
+                    <% } else { %>
+                        <%  let anArrayOfUniqueNumbers = [];
+                let numberGenerator = function(arr) {
+                    if (arr.length >= 5) return;
+                let newNumber = Math.floor(Math.random() * questionList.length);
+                    if (arr.indexOf(newNumber) < 0) {
+                        arr.push(newNumber);
+                    }
+                    numberGenerator(arr);
+                };
+                numberGenerator(anArrayOfUniqueNumbers);
+                for (let i = 0; i < anArrayOfUniqueNumbers.length; i++) { %>
+                            <li>
+                                <a href="/question/<%= questionList[anArrayOfUniqueNumbers[i]].idQuestion %>" class="question">
+                                    <%= questionList[anArrayOfUniqueNumbers[i]].textQuestion %>
+                                </a>
+                            </li>
+                            <% } %>
+                                <% } %>
+        </div>
+        <h2>
+            ¡Añade tus preguntas!
+        </h2>
+        <div class="new_question">
+            <a href="/newQuestion" class="button_style">Crear nueva pregunta</a>
+        </div>
+    </div>
+</body>
+
+</html>

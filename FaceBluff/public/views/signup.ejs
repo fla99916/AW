@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>FaceBluff</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/signup.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="title">
+            <h1>
+                FaceBluff
+            </h1>
+        </div>
+        <div class="nav">
+            <a href="/login" class="nav">Entrar</a>
+            <a href="/signup" class="nav">Nuevo usuario</a>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <h2>
+            Nuevo Usuario
+        </h2>
+        <form method="POST" action="signupValidator" enctype="multipart/form-data">
+            <div class="data">
+                <p>Email</p>
+                <input type="text" name="email">
+            </div>
+            <div class="data">
+                <p>Contraseña</p>
+                <input type="password" name="password">
+            </div>
+            <div class="data">
+                <p>Nombre completo</p>
+                <input type="text" name="name">
+            </div>
+            <div class="data">
+                <p>Sexo</p>
+                <input type="radio" name="gender" value="M" checked>
+                <p>Masculino</p>
+                <input type="radio" name="gender" value="F">
+                <p>Femenino</p>
+                <input type="radio" name="gender" value="O">
+                <p>Otro</p>
+            </div>
+            <div class="data">
+                <p>Fecha de nacimiento</p>
+                <input type="date" name="birthdate">
+            </div>
+            <div class="data">
+                <p>Imagen de perfil</p>
+                <input type="file" name="imgProfile">
+            </div>
+            <div class="button_submit">
+                <input class="button_style" type="submit" value="Crear usuario">
+            </div>
+        </form>
+        <% if (errors.length > 0) { %>
+            <div class="error">
+                <p>La información introducida en el formulario es incorrecta:</p>
+                <ul>
+                    <% errors.forEach(function(error) { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }); %>
+                </ul>
+            </div>
+            <% } %>
+    </div>
+</body>
+
+</html>

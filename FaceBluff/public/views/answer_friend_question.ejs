@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>FaceBluff</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/answer_question.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="title">
+            <h1>
+                FaceBluff
+            </h1>
+        </div>
+        <div class="nav">
+            <div>
+                <a href="/profile" class="nav">Perfil</a>
+                <a href="/friends" class="nav">Amigos</a>
+                <a href="/questions" class="nav">Preguntas</a>
+                <a href="/logout" class="nav">Desconectar</a>
+            </div>
+            <div class="user_points">
+                <%if (imgProfile === ""){ %>
+                    <img id="small_image" src="/../img/default.png" height="30" width="30">
+                    <% } else { %>
+                        <img id="small_image" src="/imgProfile/<%= imgProfile%>" height="30" width="30">
+                        <% } %>
+                            <p>
+                                <%= points%>pts</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <h2>
+            <%= question %>
+        </h2>
+        <div class="answers">
+            <ul>
+                <form method="POST" action="/getFriendAnswer/<%= id_friend %>">
+                    <div class="answer_option">
+                        <div class="option">
+                            <li>
+                                <label>
+                                    <input type="radio" name="radAnswer" value="<%= listAnswers[0].idAnswer %>" checked>
+                                    <%= listAnswers[0].text %>
+                                </label>
+                            </li>
+                            <% for (let i = 1; i < listAnswers.length; i++){ %>
+                                <li>
+                                    <label>
+                                        <input type="radio" name="radAnswer" value="<%= listAnswers[i].idAnswer %>">
+                                        <%= listAnswers[i].text %>
+                                    </label>
+                                </li>
+
+                                <% } %>
+                        </div>
+                    </div>
+                    <div class="answer_question">
+                        <input class="button_style" type="submit" value="Responder">
+                    </div>
+                </form>
+            </ul>
+
+        </div>
+    </div>
+</body>
+
+</html>

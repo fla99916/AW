@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>FaceBluff</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/friends.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="title">
+            <h1>
+                FaceBluff
+            </h1>
+        </div>
+        <div class="nav">
+            <div>
+                <a href="/profile" class="nav">Perfil</a>
+                <a href="/friends" class="nav">Amigos</a>
+                <a href="/questions" class="nav">Preguntas</a>
+                <a href="/logout" class="nav">Desconectar</a>
+            </div>
+            <div class="user_points">
+                <%if (imgProfile === ""){ %>
+                <img id="small_image" src="/../img/default.png" height="40" width="40">
+                <% } else { %>
+                <img id="small_image" src="/imgProfile/<%= imgProfile%>" height="40" width="40">
+                <% } %>
+                <p>
+                    <%= points%>pts</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <h2>
+            Solicitudes de amistad
+        </h2>
+        <div>
+            <% let friendWaiting = false;
+            for (let i = 0; i < friendList.length; i++) {
+                if (friendList[i].request === "waiting")
+                    friendWaiting = true;
+            } %>
+            <%  if (!friendWaiting) { %>
+            <h3>
+                No hay sulicitudes pendientes
+            </h3>
+            <% } else { %>
+            <ul>
+                <% for (let i = 0; i < friendList.length; i++) { %>
+                <% if (friendList[i].request === "waiting") { %>
+                <li>
+                    <div class="friend_waiting">
+                        <div class="user_data">
+                            <% let imgProfile = friendList[i].imgProfile %>
+                            <%if (imgProfile === ""){ %>
+                            <img id="small_image" src="/../img/default.png" height="60" width="60">
+                            <% } else { %>
+                            <img id="small_image" src="/imgProfile/<%= imgProfile%>" height="60" width="60">
+                            <% } %>
+                            <p class="friend">
+                                <%= friendList[i].name %>
+                            </p>
+                        </div>
+                        <div>
+                            <a href="/acceptFriend/<%= friendList[i].idFriend %>" class="button_accept">Aceptar</a>
+                            <a href="/rejectFriend/<%= friendList[i].idFriend %>" class="button_reject">Rechazar</a>
+                        </div>
+                    </div>
+                </li>
+                <% } %>
+                <% } %>
+            </ul>
+            <% } %>
+
+        </div>
+        <h2>
+            Búsqueda de amigos
+        </h2>
+        <div class="friend_search">
+            <form method="POST" action="searchFriends">
+                Buscar por nombre:
+                <input type="text" name="findName">
+                <input class="button_style" type="submit" value="Buscar">
+            </form>
+        </div>
+        <h2>
+            Mis amigos
+        </h2>
+        <div class="friend_list">
+            <ul>
+                <% for (let i = 0; i < friendList.length; i++) { %>
+                <% if (friendList[i].request === "accepted") { %>
+                <li>
+                    <div class="user_data">
+                        <% let imgProfile = friendList[i].imgProfile %>
+                        <%if (imgProfile === ""){ %>
+                        <img id="small_image" src="/../img/default.png" height="60" width="60">
+                        <% } else { %>
+                        <img id="small_image" src="/imgProfile/<%= imgProfile%>" height="60" width="60">
+                        <% } %>
+                        <a href="/friendProfile/<%= friendList[i].idFriend %>" class="friend"><%= friendList[i].name %></a>
+                    </div>
+                </li>
+                <% } %>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

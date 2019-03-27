@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>FaceBluff</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/question.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="title">
+            <h1>
+                FaceBluff
+            </h1>
+        </div>
+        <div class="nav">
+            <div>
+                <a href="/profile" class="nav">Perfil</a>
+                <a href="/friends" class="nav">Amigos</a>
+                <a href="/questions" class="nav">Preguntas</a>
+                <a href="/logout" class="nav">Desconectar</a>
+            </div>
+            <div class="user_points">
+                <%if (imgProfile === ""){ %>
+                    <img id="small_image" src="/../img/default.png" height="30" width="30">
+                    <% } else { %>
+                        <img id="small_image" src="/imgProfile/<%= imgProfile%>" height="30" width="30">
+                        <% } %>
+                            <p>
+                                <%= points%>pts</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <div class="question">
+            <h2>
+                <%= question %>
+            </h2>
+            <div class=answered>
+                <% if (existMyself.length === 0) { %>
+                    <h3>No has contestado a esta pregunta.</h3>
+                    <a href="/answerQuestion" class="button_style">Contestar Pregunta</a>
+                    <% } else { %>
+                        <h3>Has contestado a esta pregunta.</h3>
+                        <% } %>
+            </div>
+        </div>
+        <div class="friends">
+            <% if(friends.length === 0){ %>
+                <p>No tienes ningún amigo para mostrar..</p>
+                <% } else { %>
+                    <div class="friends">
+                        <ul>
+                            <% for(let i = 0; i < friends.length; i++){ %>
+                                <li>
+                                    <div class="friend_info">
+                                        <div class="friend_profile">
+                                            <% if (friends[i].imgProfile === ""){ %>
+                                                <img id="small_image" src="/../img/default.png" height="30" width="30">
+                                                <% } else { %>
+                                                    <img id="small_image" src="/imgProfile/<%= friends[i].imgProfile%>" height="30" width="30">
+                                                    <% } %>
+
+                                                        <div class="friend_name">
+                                                            <p>
+                                                                <%= friends[i].name%>
+                                                            </p>
+                                                        </div>
+                                        </div>
+                                        <div class="answered_info">
+                                            <% if(friends[i].answer === 'F') { %>
+                                                <p class="fail">&#10060;</p>
+                                                <% } else if (friends[i].answer === 'C') { %>
+                                                    <p class="correct">&#9989;</p>
+                                                    <% } else { %>
+                                                        <a href="/guess/<%= friends[i].id_friend %>" class="button_style">Adivinar</a>
+                                                        <% } %>
+                                        </div>
+                                    </div>
+                                </li>
+                                <% } %>
+                        </ul>
+                    </div>
+                    <% } %>
+        </div>
+    </div>
+</body>
+
+</html>

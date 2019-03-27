@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<title>FaceBluff</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/login.css">
+	<link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+</head>
+
+<body>
+	<!-- HEADER -->
+	<div class="header">
+		<div class="title">
+			<h1>
+				FaceBluff
+			</h1>
+		</div>
+		<div class="nav">
+			<a href="/login" class="nav">Entrar</a>
+			<a href="/signup" class="nav">Nuevo usuario</a>
+		</div>
+	</div>
+
+	<!-- MAIN -->
+	<div class="main">
+		<h2>
+			Entrar
+		</h2>
+		<form method="POST" action="login">
+			<div class="data">
+				<p>Email</p>
+				<input type="text" name="email">
+			</div>
+			<div class="data">
+				<p>Contraseña</p>
+				<input type="password" name="password">
+			</div>
+			<div class="button_submit">
+				<input class="button_style" type="submit" value="Conectar">
+			</div>
+		</form>
+		<% if (errorMsg !== null) { %>
+			<div class="error">
+				<p>
+					<%= errorMsg%>
+				</p>
+			</div>
+			<% } %>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>FaceBluff</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/profile.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="title">
+            <h1>
+                FaceBluff
+            </h1>
+        </div>
+        <div class="nav">
+            <div>
+                <a href="/profile" class="nav">Perfil</a>
+                <a href="/friends" class="nav">Amigos</a>
+                <a href="/questions" class="nav">Preguntas</a>
+                <a href="/logout" class="nav">Desconectar</a>
+            </div>
+            <div class="user_points">
+                <%if (currentUser.imgProfile === ""){ %>
+                    <img id="small_image" src="/../img/default.png" height="40" width="40">
+                    <% } else { %>
+                        <img id="small_image" src="/imgProfile/<%= currentUser.imgProfile%>" height="40" width="40">
+                        <% } %>
+                            <p>
+                                <%= currentUser.points%>pts</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <h2>
+            Perfil de
+            <%= user.name %>
+        </h2>
+        <div class="user_container">
+            <div>
+                <%if(user.imgProfile === ""){%>
+                    <img src="/../img/default.png" height="200" width="200">
+                    <%} else {%>
+                        <img src="/imgProfile/<%= user.imgProfile%>" height="200" width="200">
+                        <%}%>
+            </div>
+            <div class="user_info">
+                <p>
+                    <b>Nombre:</b>
+                    <%= user.name%>
+                </p>
+                <% if(user.birthdate != "0000-00-00" && birthdate != "") { %>
+                    <p>
+                        <b>Edad:</b>
+                        <%= (new Date()).getFullYear() - parseInt(user.birthdate.toISOString().slice(0,5),10) %> años</p>
+                    <% } else { %>
+                        <p>
+                            <b>Edad:</b> -</p>
+                        <% } %>
+                            <% if(user.gender === "M") { %>
+                                <p>
+                                    <b>Sexo:</b> Hombre</p>
+                                <% } else if (user.gender === "F") { %>
+                                    <p>
+                                        <b>Sexo:</b> Mujer</p>
+                                    <% } else { %>
+                                        <p>
+                                            <b>Sexo:</b> Otro</p>
+                                        <% } %>
+                                            <p>
+                                                <b>Puntos:</b>
+                                                <%= user.points%>
+                                            </p>
+            </div>
+        </div>
+        <% if (photoList.length != []) { %>
+            <div class="photos">
+                <h2>
+                    Galeria
+                </h2>
+                <% for (let i = 0; i < photoList.length; i++) { %>
+                    <div class="photo">
+                        <img src="/imgProfile/<%= photoList[i].name%>" width=500>
+
+                        <div class="description">
+                            <p>
+                                <%= photoList[i].description %>
+                            </p>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+            <% } %>
+    </div>
+</body>
+
+</html>

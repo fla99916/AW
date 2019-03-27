@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>FaceBluff</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/upload_photo.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="title">
+            <h1>
+                FaceBluff
+            </h1>
+        </div>
+        <div class="nav">
+            <div>
+                <a href="/profile" class="nav">Perfil</a>
+                <a href="/friends" class="nav">Amigos</a>
+                <a href="/questions" class="nav">Preguntas</a>
+                <a href="/logout" class="nav">Desconectar</a>
+            </div>
+            <div class="userPoints">
+                <%if (imgProfile === ""){ %>
+                    <img id="smallImage" src="/../img/default.png" height="30" width="30">
+                    <% } else { %>
+                        <img id="smallImage" src="/imgProfile/<%= imgProfile%>" height="30" width="30">
+                        <% } %>
+                            <p>
+                                <%= points%> pts</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <h2>
+            Subir foto
+        </h2>
+        <form method="POST" action="uploadPhoto" enctype="multipart/form-data">
+            <div>
+                <p>Foto</p>
+                <input type="file" name="imgProfile">
+            </div>
+            <div>
+                <p>Descripción</p>
+                <input type="text" name="description">
+            </div>
+            <div class="button_submit">
+                <input class="button_style" type="submit" value="Subir foto">
+            </div>
+        </form>
+        <% if (error) { %>
+            <div class="error">
+                <p>Selecciona una foto para subir y añade una descripción</p>
+            </div>
+            <% } %>
+    </div>
+</body>
+
+</html>
